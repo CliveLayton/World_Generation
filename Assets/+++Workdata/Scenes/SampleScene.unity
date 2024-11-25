@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -183,8 +183,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 100
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -387,6 +387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528070580}
   - component: {fileID: 528070579}
+  - component: {fileID: 528070581}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -408,7 +409,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorTile: {fileID: 1207859121320398474, guid: a9f88e3b732e1e34da1ab9d7cd42d6d3,
     type: 3}
-  roomSize: {x: 4, y: 10}
+  wallTile: {fileID: 2360703696524346055, guid: df7e9dc57ee899e4e9c0f5bbd31d0b04,
+    type: 3}
+  backgroundTile: {fileID: 29363070121189693, guid: 749dea76f22c2df4eb4d5d97bd599a99,
+    type: 3}
+  useSeed: 0
+  seed: 111
+  roomCount: {x: 10, y: 20}
+  roomSize: {x: 5, y: 10}
+  possibleExitsRoom: {x: 2, y: 4}
+  corridorLength: {x: 20, y: 30}
+  corridorCurvines: 0.1
+  corridorBranchingProbability: 0
 --- !u!4 &528070580
 Transform:
   m_ObjectHideFlags: 0
@@ -419,6 +431,64 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.633598, y: 3.1645336, z: 4.9064364}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &528070581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528070578}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a287ee70c684564094ccf5fba56ce60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfRandoms: 2000
+  randomRange: {x: 0, y: 100}
+--- !u!1 &722287404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 722287406}
+  - component: {fileID: 722287405}
+  m_Layer: 0
+  m_Name: SceneReloader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &722287405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722287404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5771dc6af84fdd84ca969e88dd1e7533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &722287406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722287404}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.43901, y: 3.442844, z: 4.8620715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -481,3 +551,4 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 528070580}
+  - {fileID: 722287406}
