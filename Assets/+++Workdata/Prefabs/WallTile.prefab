@@ -104,6 +104,7 @@ MonoBehaviour:
   - {fileID: -1939196791, guid: 177866fd9f71f3743a463d54d177d38b, type: 3}
   probalilityDifferentSprite: 0.1
   walkable: 0
+  tileType: 4
 --- !u!61 &5108906732660399141
 BoxCollider2D:
   m_ObjectHideFlags: 0

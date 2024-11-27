@@ -98,7 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4ad7701ad4dd6459abac31974c8714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleTileSprite: []
+  probalilityDifferentSprite: 0
   walkable: 0
+  tileType: 5
 --- !u!61 &5545600477849612819
 BoxCollider2D:
   m_ObjectHideFlags: 0

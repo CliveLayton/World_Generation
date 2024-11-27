@@ -6,9 +6,20 @@ using Random = UnityEngine.Random;
 
 public class DungeonTile : MonoBehaviour
 {
+    public enum TileType
+    {
+        Water,
+        Gras,
+        Mountain,
+        Floor,
+        Wall,
+        Background
+    }
+    
     [SerializeField] private Sprite[] possibleTileSprite;
     [SerializeField, Range(0, 1)] private float probalilityDifferentSprite;
     public bool walkable;
+    public TileType tileType;
 
     private void Start()
     {

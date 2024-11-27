@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -31,6 +32,8 @@ public class SimpleDungeon : MonoBehaviour
      *
      * door location
      */
+
+    [SerializeField] private GameObject prefabCharacter;
 
     [SerializeField] private DungeonTile floorTile;
     [SerializeField] private DungeonTile wallTile;
@@ -364,10 +367,11 @@ public class SimpleDungeon : MonoBehaviour
             yield return null;
         }
         
-        SetCameraToCenter();
+        FindObjectOfType<CinemachineVirtualCamera>().m_Follow = Instantiate(prefabCharacter).transform;
+        //SetCameraToCenter();
     }
 
-    private void SetCameraToCenter()
+    /*private void SetCameraToCenter()
     {
         Vector3 sumVector = new Vector3(0f, 0f, 0f);
 
@@ -379,7 +383,7 @@ public class SimpleDungeon : MonoBehaviour
         Vector3 groupCenter = sumVector / parentDungeon.transform.childCount;
         Camera.main.transform.position = groupCenter;
         Camera.main.transform.position = new Vector3(groupCenter.x, groupCenter.y, -10);
-    }
+    }*/
 }
 
 public static class Extentions
