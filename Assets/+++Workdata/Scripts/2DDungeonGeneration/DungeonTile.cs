@@ -11,6 +11,7 @@ public class DungeonTile : MonoBehaviour
         Water,
         Gras,
         Mountain,
+        Tree,
         Floor,
         Wall,
         Background

@@ -489,14 +489,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabCharacter: {fileID: 331719229916142640, guid: d3690197cb794254a8840d6e39caa075,
     type: 3}
-  prefabFloor: {fileID: 1207859121320398474, guid: 96426b2f4f7a10f498dd7e88e87f0698,
+  prefabGras: {fileID: 1207859121320398474, guid: 96426b2f4f7a10f498dd7e88e87f0698,
     type: 3}
-  prefabWall: {fileID: 1207859121320398474, guid: c2a11c62c11dea649ae89d3d1e0f5e3b,
+  prefabMountain: {fileID: 1207859121320398474, guid: c2a11c62c11dea649ae89d3d1e0f5e3b,
     type: 3}
   prefabWater: {fileID: 1207859121320398474, guid: a63c64c00a66cf4478fe8960c7c4ed25,
     type: 3}
+  prefabTree: {fileID: 1207859121320398474, guid: b03d076b81a3aca49bfafe77cc83f2e6,
+    type: 3}
   sizeWorld: {x: 100, y: 100}
   scaleNoise: 0.1
+  treeNoiseScale: 0.25
 --- !u!1 &722287404
 GameObject:
   m_ObjectHideFlags: 0

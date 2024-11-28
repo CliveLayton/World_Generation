@@ -24,18 +24,23 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        SetAnimation();
+    }
+
     void OnMove(InputValue inputValue)
     {
         moveDirection = new Vector2Int(Mathf.RoundToInt(inputValue.Get<Vector2>().x), 
             Mathf.RoundToInt(inputValue.Get<Vector2>().y));
-        if (moveDirection.x > 0)
+        /*if (moveDirection.x > 0)
         {
             charVisual.GetComponent<SpriteRenderer>().flipX = false;
         }
         else if (moveDirection.x < 0)
         {
             charVisual.GetComponent<SpriteRenderer>().flipX = true;
-        }
+        }*/
     }
 
     void MoveCharacter()
@@ -54,6 +59,12 @@ public class CharacterController2D : MonoBehaviour
             });
             charVisual.DOLocalMoveY(0.3f, stepDuration / 2f).SetEase(Ease.InBack).SetLoops(2, LoopType.Yoyo);
         }
+    }
+
+    private void SetAnimation()
+    {
+        charVisual.GetComponent<Animator>().SetFloat("InputX", moveDirection.x);
+        charVisual.GetComponent<Animator>().SetFloat("InputY", moveDirection.y);
     }
     
     DungeonTile TileCheck(Vector2Int checkPosition)
