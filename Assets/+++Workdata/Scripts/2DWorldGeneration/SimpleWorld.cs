@@ -16,6 +16,9 @@ public class SimpleWorld : MonoBehaviour
     [SerializeField] private float scaleNoise = 0.1f;
 
     [SerializeField] private float treeNoiseScale = 0.1f;
+
+    [SerializeField] private bool spawnTrees;
+    [SerializeField] private bool beautifyEdges;
     
     private void Start()
     {
@@ -43,8 +46,11 @@ public class SimpleWorld : MonoBehaviour
                 }
             }
         }
-        
-        GenerateTrees();
+
+        if (spawnTrees)
+        {
+            GenerateTrees();
+        }
     }
 
     private void GenerateTrees()
