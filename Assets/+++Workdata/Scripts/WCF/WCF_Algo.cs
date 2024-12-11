@@ -9,30 +9,65 @@ public class WCF_Algo : MonoBehaviour
 
    [SerializeField] private SO_Rules rules;
 
+   private int countSetTiles = 0;
+
    private void Start()
    {
+      StartGeneration();
+   }
+
+   private void StartGeneration()
+   {
       worldGrid = FindObjectOfType<WorldGrid>();
-
-      BaseTile startingTile = worldGrid.GetRandomBaseTile();
-      startingTile.InitTile(startingTile.possibleTiles[Random.Range(0, startingTile.possibleTiles.Count)]);
-      //startingTile.possibleTiles.Remove(startingTile.tileData);
       
-      foreach (SO_TileData tileData in startingTile.possibleTiles)
+      //add loop - check if random tile already set - check if all are set
+      while (countSetTiles < worldGrid.GetTotalTileCount())
       {
-         if (tileData == startingTile.tileData)
+         BaseTile startingTile = worldGrid.GetRandomBaseTile();
+         while (startingTile.tileData)
          {
-            continue;
+            startingTile = worldGrid.GetRandomBaseTile();
          }
+         startingTile.InitTile(startingTile.possibleTiles[Random.Range(0, startingTile.possibleTiles.Count)]);
+         countSetTiles++;
+         worldGrid.TileWasSet(startingTile);
+         //startingTile.possibleTiles.Remove(startingTile.tileData);
 
-         startingTile.possibleTiles.Remove(tileData);
-         HashSet<SO_TileData.TileType> possibleNeighbors = CalculatePossibleNeighbors(startingTile.possibleTiles);
+         List<SO_TileData> currentPossibleTileDatas = new List<SO_TileData>(startingTile.possibleTiles);
+      
+         for (int i = 0; i < startingTile.possibleTiles.Count; i++)
+         {
+            if (startingTile.possibleTiles[i] == startingTile.tileData)
+            {
+               continue;
+            }
+
+            currentPossibleTileDatas.Remove(startingTile.possibleTiles[i]);
+            HashSet<SO_TileData.TileType> possibleNeighbors = CalculatePossibleNeighbors(currentPossibleTileDatas);
+            CheckNeighbors(startingTile.gridPosition, possibleNeighbors);
+         }
       }
    }
 
    private void CheckNeighbors(Vector2Int currentPos, HashSet<SO_TileData.TileType> possibleNeighbors)
    {
+      CheckNeighborPossibleTiles(currentPos + Vector2Int.up, possibleNeighbors);
+      CheckNeighborPossibleTiles(currentPos + Vector2Int.right, possibleNeighbors);
+      CheckNeighborPossibleTiles(currentPos + Vector2Int.down, possibleNeighbors);
+      CheckNeighborPossibleTiles(currentPos + Vector2Int.left, possibleNeighbors);
+   }
+
+   private void CheckNeighborPossibleTiles(Vector2Int currentPos, HashSet<SO_TileData.TileType> possibleNeighbors)
+   {
       //one to the left
-      BaseTile neighborTile = worldGrid.GetBaseTileAt(currentPos + Vector2Int.left);
+      BaseTile neighborTile = worldGrid.GetBaseTileAt(currentPos);
+      if (!neighborTile || neighborTile.tileData != null)
+      {
+         return;
+      }
+
+      List<SO_TileData> currentPossibleTileDatas = new List<SO_TileData>(neighborTile.possibleTiles);
+      
       foreach (SO_TileData tileData in neighborTile.possibleTiles)
       {
          if (possibleNeighbors.Contains(tileData.type))
@@ -40,15 +75,19 @@ public class WCF_Algo : MonoBehaviour
             continue;
          }
 
-         neighborTile.possibleTiles.Remove(tileData);
-         HashSet<SO_TileData.TileType> tempHash = neighborTile.possibleTiles.Select(tile => tile.type).ToHashSet();
-         CheckNeighbors(neighborTile.gridPosition, tempHash);
-      }
-      
-      for (int i = 0; i < 4; i++)
-      {
+         currentPossibleTileDatas.Remove(tileData);
          
+         CheckNeighbors(neighborTile.gridPosition, CalculatePossibleNeighbors(currentPossibleTileDatas));
+
+         if (currentPossibleTileDatas.Count == 1)
+         {
+            neighborTile.InitTile(tileData);
+            countSetTiles++;
+            worldGrid.TileWasSet(neighborTile);
+         }
       }
+
+      neighborTile.possibleTiles = new List<SO_TileData>(currentPossibleTileDatas);
    }
 
    HashSet<SO_TileData.TileType> CalculatePossibleNeighbors(List<SO_TileData> listTileData)
