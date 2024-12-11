@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class WorldGrid : MonoBehaviour
 {
     [SerializeField] private Vector2Int size;
+    [SerializeField] private Transform parent;
+    [SerializeField] private CinemachineVirtualCamera vc;
     private BaseTile[,] worldGrid;
 
     private List<BaseTile> allNotSetTiles = new List<BaseTile>();
@@ -19,11 +22,23 @@ public class WorldGrid : MonoBehaviour
         {
             for (int y = 0; y < size.y; y++)
             {
-                worldGrid[x, y] = Instantiate(prefabBaseTile, new Vector3(x,y), Quaternion.identity);
+                worldGrid[x, y] = Instantiate(prefabBaseTile, new Vector3(x,y), Quaternion.identity, parent);
                 worldGrid[x, y].gridPosition = new Vector2Int(x, y);
                 allNotSetTiles.Add(worldGrid[x,y]);
             }
         }
+        
+        Vector3 sumVector = new Vector3(0f, 0f, 0f);
+
+        foreach (Transform child in parent.transform)
+        {
+            sumVector += child.position;
+        }
+
+        Vector3 groupCenter = sumVector / parent.transform.childCount;
+        vc.gameObject.transform.position = groupCenter;
+        vc.gameObject.transform.position = new Vector3(groupCenter.x, groupCenter.y, -10);
+        vc.m_Lens.OrthographicSize = (float)size.x / 2;
     }
 
     public void TileWasSet(BaseTile setBaseTile)

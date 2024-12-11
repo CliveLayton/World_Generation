@@ -71,7 +71,7 @@ public class SimpleWorld : MonoBehaviour
         }
         
 
-        FindObjectOfType<CinemachineVirtualCamera>().m_Follow = Instantiate(prefabCharacter).transform;
+        FindAnyObjectByType<CinemachineVirtualCamera>().m_Follow = Instantiate(prefabCharacter).transform;
     }
 
     DungeonTile TileCheck(Vector2Int checkPosition)

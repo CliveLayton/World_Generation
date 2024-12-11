@@ -367,7 +367,7 @@ public class SimpleDungeon : MonoBehaviour
             yield return null;
         }
         
-        FindObjectOfType<CinemachineVirtualCamera>().m_Follow = Instantiate(prefabCharacter).transform;
+        FindAnyObjectByType<CinemachineVirtualCamera>().m_Follow = Instantiate(prefabCharacter).transform;
         //SetCameraToCenter();
     }
 

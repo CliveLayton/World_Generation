@@ -1,5 +1,5 @@
 {
-    "name": "DefaultInputActions",
+    "name": "GameInput",
     "maps": [
         {
             "name": "Player",

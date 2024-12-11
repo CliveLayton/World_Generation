@@ -12,14 +12,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac223f30dbe5f0045bd12439f72aa6b4, type: 3}
   m_Name: Rules
   m_EditorClassIdentifier: 
-  Rules:
+  RulesTop:
   - tile1: 0
     tile2: 0
   - tile1: 1
     tile2: 1
   - tile1: 2
     tile2: 2
-  - tile1: 2
-    tile2: 0
+  - tile1: 4
+    tile2: 4
   - tile1: 2
     tile2: 1
+  - tile1: 0
+    tile2: 3
+  - tile1: 2
+    tile2: 3
+  - tile1: 1
+    tile2: 4
+  - tile1: 5
+    tile2: 1
+  - tile1: 1
+    tile2: 8
+  - tile1: 1
+    tile2: 9
+  - tile1: 1
+    tile2: 13
+  RulesDown:
+  - tile1: 0
+    tile2: 0
+  - tile1: 1
+    tile2: 1
+  - tile1: 2
+    tile2: 2
+  - tile1: 4
+    tile2: 4
+  - tile1: 2
+    tile2: 1
+  - tile1: 0
+    tile2: 3
+  - tile1: 2
+    tile2: 3
+  - tile1: 1
+    tile2: 4
+  - tile1: 5
+    tile2: 1
+  - tile1: 1
+    tile2: 6
+  - tile1: 1
+    tile2: 7
+  - tile1: 1
+    tile2: 12
+  RulesLeft:
+  - tile1: 0
+    tile2: 0
+  - tile1: 1
+    tile2: 1
+  - tile1: 2
+    tile2: 2
+  - tile1: 4
+    tile2: 4
+  - tile1: 2
+    tile2: 1
+  - tile1: 0
+    tile2: 3
+  - tile1: 2
+    tile2: 3
+  - tile1: 1
+    tile2: 4
+  - tile1: 5
+    tile2: 1
+  - tile1: 1
+    tile2: 11
+  - tile1: 1
+    tile2: 7
+  - tile1: 1
+    tile2: 9
+  RulesRight:
+  - tile1: 0
+    tile2: 0
+  - tile1: 1
+    tile2: 1
+  - tile1: 2
+    tile2: 2
+  - tile1: 4
+    tile2: 4
+  - tile1: 2
+    tile2: 1
+  - tile1: 0
+    tile2: 3
+  - tile1: 2
+    tile2: 3
+  - tile1: 1
+    tile2: 4
+  - tile1: 5
+    tile2: 1
+  - tile1: 1
+    tile2: 6
+  - tile1: 1
+    tile2: 8
+  - tile1: 1
+    tile2: 10

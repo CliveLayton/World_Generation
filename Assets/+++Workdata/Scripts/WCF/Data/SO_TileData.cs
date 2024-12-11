@@ -7,7 +7,18 @@ public class SO_TileData : ScriptableObject
     {
         Water,
         Land,
-        Coast
+        Coast,
+        ShallowWater,
+        InnerLand,
+        SpecialLand,
+        CliffEdgeTopLeft,
+        CliffEdgeTopRight,
+        CliffEdgeDownLeft,
+        CliffEdgeDownRight,
+        CliffEdgeVerticalLeft,
+        CliffEdgeVerticalRight,
+        CliffEdgeHorizontalTop,
+        CliffEdgeHorizontalDown
     }
 
     public TileType type;
